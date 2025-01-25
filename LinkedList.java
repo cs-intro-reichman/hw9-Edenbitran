@@ -212,8 +212,7 @@ public class LinkedList {
 		//// Write your code here
 		Node current = first;
 		if (node == null) {
-			throw new IllegalArgumentException(
-					"index must be between 0 and size");
+			throw new NullPointerException();
 		}
 		if (node.equals(current)) {
 			first = current.next;
@@ -222,12 +221,16 @@ public class LinkedList {
 				last = null;
 			}
 			return;
+		}
+		if (last.equals(node)) {
+			last = getNode(size - 1);
+			last.next = null;
+			size--;
 		} else {
 			while (current != null) {
-				if (current.next.equals(node)) {
+				if (current.next != null && current.next.equals(node)) {
 					current.next = current.next.next;
 					size--;
-					last = getNode(size);
 					return;
 				}
 				current = current.next;
