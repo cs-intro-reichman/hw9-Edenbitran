@@ -161,7 +161,7 @@ public class LinkedList {
 	 */
 	public MemoryBlock getBlock(int index) {
 		//// Replace the following statement with your code
-		if (index < 0 || index > size) {
+		if (index < 0 || index > size || size == 0) {
 			throw new IllegalArgumentException(
 					"index must be between 0 and size");
 		}
@@ -211,29 +211,26 @@ public class LinkedList {
 	public void remove(Node node) {
 		//// Write your code here
 		Node current = first;
-		if (size == 0) {
+		if (node == null) {
 			throw new IllegalArgumentException(
 					"index must be between 0 and size");
 		}
 		if (node.equals(current)) {
-			if (size == 1) {
-				first = null;
+			first = current.next;
+			size--;
+			if (size == 0) {
 				last = null;
 			}
-			current = current.next;
-			first = current;
-			size--;
 			return;
-		} else if (getLast().equals(node)) {
-			last = getNode(size - 1);
-			size--;
 		} else {
 			while (current != null) {
 				if (current.next.equals(node)) {
 					current.next = current.next.next;
 					size--;
+					last = getNode(size);
 					return;
 				}
+				current = current.next;
 			}
 		}
 	}
