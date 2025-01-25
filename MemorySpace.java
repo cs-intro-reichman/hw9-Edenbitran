@@ -118,7 +118,6 @@ public class MemorySpace {
 					"index must be between 0 and size");
 		} else {
 			while (firstAllocatedList.block.baseAddress != address) {
-				System.out.println("!!");
 				firstAllocatedList = firstAllocatedList.next;
 			}
 			if (firstAllocatedList.block.baseAddress == address) {

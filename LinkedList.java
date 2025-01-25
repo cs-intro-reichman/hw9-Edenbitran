@@ -166,10 +166,10 @@ public class LinkedList {
 					"index must be between 0 and size");
 		}
 		if (index == 0) {
-			return first.block;
+			return this.first.block;
 		}
 		if (index == size) {
-			return last.block;
+			return this.last.block;
 		} else {
 			int i = 0;
 			Node current = first;
@@ -211,17 +211,25 @@ public class LinkedList {
 	public void remove(Node node) {
 		//// Write your code here
 		Node current = first;
-		if (node == current && size > 0) {
+		if (size == 0) {
+			throw new IllegalArgumentException(
+					"index must be between 0 and size");
+		}
+		if (node.equals(current)) {
 			if (size == 1) {
 				first = null;
 				last = null;
 			}
 			current = current.next;
+			first = current;
 			size--;
 			return;
+		} else if (getLast().equals(node)) {
+			last = getNode(size - 1);
+			size--;
 		} else {
 			while (current != null) {
-				if (current.next == node) {
+				if (current.next.equals(node)) {
 					current.next = current.next.next;
 					size--;
 					return;
@@ -244,16 +252,10 @@ public class LinkedList {
 			throw new IllegalArgumentException(
 					"index must be between 0 and size");
 		}
-		// int i = 0;
-		// Node current = first;
-		// while (i + 1 < index) {
-		// current = current.next;
-		// i++;
-		// }
-		// current = current.next.next;
-		// size--;
 		if (index == 0) {
-			first = first.next;
+			this.first = first.next;
+		} else if (index == size) {
+			last = getNode(index - 1);
 		} else {
 			Node beforeRemoveNode = getNode(index - 1);
 			beforeRemoveNode.next = beforeRemoveNode.next.next;
