@@ -220,13 +220,27 @@ public class LinkedList {
 		if (node == null || size == 0) {
 			throw new NullPointerException();
 		}
-		int index = indexOf(node.block); // index = the number of the node in the list
-		if (index < 0 || index >= size) {
-			throw new IllegalArgumentException(
-					"ERROR NullPointerException!");
+		if (this.first.equals(node)) {
+			this.first = first.next;
+			if (first == null) {
+				last = null;
+			}
+			size--;
+			return;
+		} else if (this.last.equals(node)) {
+			last = getNode(size - 2);
+			last.next = null;
+			size--;
+			return;
+		} else {
+			int index = indexOf(node.block);
+			if (index != -1) {
+				remove(index);
+				size--;
+			}
+			return;
 		}
-		remove(index);
-		size--;
+
 	}
 
 	/**
@@ -270,7 +284,7 @@ public class LinkedList {
 	public void remove(MemoryBlock block) { // exception need to be
 		//// Write your code here
 		if (block == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException("index must be between 0 and size");
 		} else {
 			Node current = first;
 			if (current.block.equals(block)) {
