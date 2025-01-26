@@ -217,11 +217,7 @@ public class LinkedList {
 	 */
 	public void remove(Node node) {
 		//// Write your code here
-		if (node == null) {
-			throw new IllegalArgumentException(
-					"index must be between 0 and size");
-		}
-		if (size == 0) {
+		if (node == null || size == 0) {
 			throw new NullPointerException();
 		}
 		int index = indexOf(node.block); // index = the number of the node in the list
@@ -241,7 +237,7 @@ public class LinkedList {
 		//// Write your code here
 		if (index < 0 || index >= size) {
 			throw new IllegalArgumentException(
-					"index must be between 0 and size");
+					"ERROR NullPointerException!");
 		}
 		if (index == 0 && size == 1) {
 			first = null;
