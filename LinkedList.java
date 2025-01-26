@@ -260,24 +260,28 @@ public class LinkedList {
 			throw new IllegalArgumentException(
 					"index must be between 0 and size");
 		}
-		if (index == 0 && size == 1) {
-			first = null;
-			last = null;
+		if (index == 0) { // removing the first node
+			if (size == 1) { // list size ==1 , after removing -> null
+				first = null;
+				last = null;
+				size--;
+				return;
+			} else { // the first node in list that have more then 1 node is: .next
+				first = first.next;
+				size--;
+				return;
+			}
+		}
+		if (index == size - 1) {
+			last = getNode(index - 1);
 			size--;
 			return;
 		}
-		if (index == 0 && size > 1) {
-			this.first = first.next;
-			size--;
-			return;
-		}
-		Node current = first;
-		for (int i = 0; i < index; i++) {
-			current = current.next;
-		}
+		Node current = getNode(index - 1);
 		current.next = current.next.next;
 		size--;
 		last = getLast();
+		return;
 	}
 
 	/**
