@@ -78,30 +78,18 @@ public class MemorySpace {
 		// if the maxSize equals to the length
 		// add to allocatedList and remove
 		// from the freeList
-		if (currentFreeList != null && currentFreeList.block.length >= length) {
-			// adding to allocated list
-			allocatedList.addLast(new MemoryBlock(currentFreeList.block.baseAddress, length));
-			if (currentFreeList.block.length == length) { // if equal - remove from free list
-				freeList.remove(currentFreeList);
-			} else { // if bigger, edit baseadress and length
-				currentFreeList.block.baseAddress += length;
-				currentFreeList.block.length -= length;
-			}
-			return allocatedList.getLast().block.baseAddress; // return the adress in the memory from the allocated list
-		} else {
-			while (currentFreeList.next != null) {
-				if (currentFreeList.block.length >= length) {
-					allocatedList.addLast(new MemoryBlock(currentFreeList.block.baseAddress, length));
-					if (currentFreeList.block.length == length) {
-						freeList.remove(currentFreeList);
-					} else {
-						currentFreeList.block.baseAddress += length;
-						currentFreeList.block.length -= length;
-					}
-					return allocatedList.getLast().block.baseAddress;
+		while (currentFreeList != null) {
+			if (currentFreeList.block.length >= length) {
+				allocatedList.addLast(new MemoryBlock(currentFreeList.block.baseAddress, length));
+				if (currentFreeList.block.length == length) {
+					freeList.remove(currentFreeList);
+				} else {
+					currentFreeList.block.baseAddress += length;
+					currentFreeList.block.length -= length;
 				}
-				currentFreeList = currentFreeList.next;
+				return allocatedList.getLast().block.baseAddress;
 			}
+			currentFreeList = currentFreeList.next;
 		}
 		return -1;
 	}
