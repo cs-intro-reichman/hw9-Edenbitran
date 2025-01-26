@@ -278,9 +278,6 @@ public class LinkedList {
 		} else {
 			Node beforeRemoveNode = getNode(index - 1);
 			beforeRemoveNode.next = beforeRemoveNode.next.next;
-			if (beforeRemoveNode.next.next == null) {
-				last = beforeRemoveNode;
-			}
 			size--;
 			return;
 		}
