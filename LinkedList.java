@@ -263,17 +263,24 @@ public class LinkedList {
 		if (index == 0 && size == 1) {
 			first = null;
 			last = null;
+			size--;
+			return;
 		}
 		if (index == 0 && size > 1) {
 			this.first = first.next;
+			size--;
+			return;
 		} else if (index == size - 1) {
-			last = getNode(index - 1);
+			last = getNode(size - 2);
 			last.next = null;
+			size--;
+			return;
 		} else {
 			Node beforeRemoveNode = getNode(index - 1);
 			beforeRemoveNode.next = beforeRemoveNode.next.next;
+			size--;
+			return;
 		}
-		size--;
 	}
 
 	/**
