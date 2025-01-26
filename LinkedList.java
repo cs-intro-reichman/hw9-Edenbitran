@@ -221,6 +221,10 @@ public class LinkedList {
 			throw new NullPointerException();
 		}
 		int index = indexOf(node.block); // index = the number of the node in the list
+		if (index < 0 || index >= size) {
+			throw new IllegalArgumentException(
+					"ERROR NullPointerException!");
+		}
 		remove(index);
 		size--;
 	}
