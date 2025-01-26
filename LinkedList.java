@@ -267,15 +267,13 @@ public class LinkedList {
 			}
 			size--;
 			return;
-		} else if (index + 1 == size) {
-			last = getNode(index - 1);
-			last.next = null;
-			size--;
-			return;
 		} else {
 			Node current = getNode(index - 1);
 			current.next = current.next.next;
 			size--;
+			if (current.next == null) {
+				last = current;
+			}
 			return;
 		}
 	}
