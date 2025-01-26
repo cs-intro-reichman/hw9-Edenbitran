@@ -272,11 +272,15 @@ public class LinkedList {
 			return;
 		} else if (index + 1 == size) {
 			last = getNode(index - 1);
+			last.next = null;
 			size--;
 			return;
 		} else {
 			Node beforeRemoveNode = getNode(index - 1);
 			beforeRemoveNode.next = beforeRemoveNode.next.next;
+			if (beforeRemoveNode.next.next == null) {
+				last = beforeRemoveNode;
+			}
 			size--;
 			return;
 		}
