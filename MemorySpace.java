@@ -27,11 +27,7 @@ public class MemorySpace {
 		// zero, and its length is the given memory size.
 		freeList = new LinkedList();
 		freeList.addLast(new MemoryBlock(0, maxSize));
-		freeList.addFirst(new MemoryBlock(0, maxSize));
-
-		// MemoryBlock m = new MemoryBlock(2, 1234);
-		// freeList.addFirst(m);
-		// freeList.remove(m);
+		// freeList.addFirst(new MemoryBlock(0, maxSize));
 	}
 
 	/**
@@ -80,7 +76,8 @@ public class MemorySpace {
 		// from the freeList
 		while (currentFreeList != null) {
 			if (currentFreeList.block.length >= length) {
-				allocatedList.addLast(new MemoryBlock(currentFreeList.block.baseAddress, length));
+				MemoryBlock newMemoryBlock = new MemoryBlock(currentFreeList.block.baseAddress, length);
+				allocatedList.addLast(newMemoryBlock);
 				if (currentFreeList.block.length == length) {
 					freeList.remove(currentFreeList);
 				} else {
