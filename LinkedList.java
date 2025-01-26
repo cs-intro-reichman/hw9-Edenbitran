@@ -258,7 +258,7 @@ public class LinkedList {
 		//// Write your code here
 		if (index < 0 || index >= size) {
 			throw new IllegalArgumentException(
-					" index must be between 0 and size");
+					"index must be between 0 and size");
 		}
 		if (index == 0 && size == 1) {
 			first = null;
@@ -270,17 +270,14 @@ public class LinkedList {
 			this.first = first.next;
 			size--;
 			return;
-		} else if (index + 1 == size) {
-			last = getNode(index - 1);
-			last.next = null;
-			size--;
-			return;
-		} else {
-			Node beforeRemoveNode = getNode(index - 1);
-			beforeRemoveNode.next = beforeRemoveNode.next.next;
-			size--;
-			return;
 		}
+		Node current = first;
+		for (int i = 0; i < index; i++) {
+			current = current.next;
+		}
+		current.next = current.next.next;
+		size--;
+		last = getLast();
 	}
 
 	/**
