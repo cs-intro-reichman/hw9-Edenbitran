@@ -268,12 +268,9 @@ public class LinkedList {
 			size--;
 			return;
 		} else {
-			Node current = getNode(index - 1);
-			current.next = current.next.next;
+			Node remNode = getNode(index);
+			remove(remNode);
 			size--;
-			if (current.next == null) {
-				last = current;
-			}
 			return;
 		}
 	}
@@ -291,12 +288,6 @@ public class LinkedList {
 		if (block == null) {
 			throw new IllegalArgumentException("index must be between 0 and size");
 		} else {
-			Node current = first;
-			if (current.block.equals(block)) {
-				first = current.next;
-				size--;
-				return;
-			}
 			int index = indexOf(block);
 			remove(index);
 			size--;
