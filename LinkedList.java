@@ -225,24 +225,20 @@ public class LinkedList {
 			if (first == null) {
 				last = null;
 			}
-			size--;
-			return;
 		} else if (this.last.equals(node)) {
 			last = getNode(size - 2);
 			last.next = null;
-			size--;
-			return;
 		} else {
 			Node current = first;
 			while (current != null) {
 				if (current.next.equals(node)) {
 					current.next = current.next.next;
-					size--;
 					break;
 				}
 				current = current.next;
 			}
 		}
+		size--;
 
 	}
 
