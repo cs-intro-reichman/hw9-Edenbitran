@@ -272,7 +272,6 @@ public class LinkedList {
 			return;
 		} else if (index + 1 == size) {
 			last = getNode(index - 1);
-			last.next = null;
 			size--;
 			return;
 		} else {
