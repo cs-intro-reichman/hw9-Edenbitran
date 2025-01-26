@@ -233,12 +233,15 @@ public class LinkedList {
 			size--;
 			return;
 		} else {
-			int index = indexOf(node.block);
-			if (index != -1) {
-				remove(index);
-				size--;
+			Node current = first;
+			while (current != null) {
+				if (current.next.equals(node)) {
+					current.next = current.next.next;
+					size--;
+					break;
+				}
+				current = current.next;
 			}
-			return;
 		}
 
 	}
