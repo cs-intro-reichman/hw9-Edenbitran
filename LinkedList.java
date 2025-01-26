@@ -260,19 +260,8 @@ public class LinkedList {
 			throw new IllegalArgumentException(
 					"index must be between 0 and size");
 		}
-		if (index == 0) {
-			first = first.next;
-			if (first == null) {
-				last = null;
-			}
-			size--;
-			return;
-		} else {
-			Node remNode = getNode(index);
-			remove(remNode);
-			size--;
-			return;
-		}
+		Node remNode = getNode(index);
+		remove(remNode);
 	}
 
 	/**
