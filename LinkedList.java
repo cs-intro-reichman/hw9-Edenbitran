@@ -275,7 +275,6 @@ public class LinkedList {
 		} else {
 			int index = indexOf(block);
 			remove(index);
-			size--;
 		}
 
 	}
