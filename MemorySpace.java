@@ -106,7 +106,7 @@ public class MemorySpace {
 			throw new IllegalArgumentException(
 					"index must be between 0 and size");
 		} else {
-			while (firstAllocatedList.block.baseAddress != address) {
+			while (firstAllocatedList != null && firstAllocatedList.block.baseAddress != address) {
 				firstAllocatedList = firstAllocatedList.next;
 			}
 			if (firstAllocatedList.block.baseAddress == address) {
