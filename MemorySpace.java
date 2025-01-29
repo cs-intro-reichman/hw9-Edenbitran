@@ -141,7 +141,7 @@ public class MemorySpace {
 			return;
 		}
 		Node current = freeList.getFirst();
-		while (current.next != null) {
+		while (current != null && current.next != null) {
 			int numMemory = current.block.baseAddress + current.block.length;
 			if (current.next.block.baseAddress == numMemory) {
 				current.block.length += current.block.baseAddress + current.block.length;
