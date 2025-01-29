@@ -144,7 +144,7 @@ public class MemorySpace {
 		while (current != null && current.next != null) {
 			int numMemory = current.block.baseAddress + current.block.length;
 			if (current.next.block.baseAddress == numMemory) {
-				current.block.length += current.block.baseAddress + current.block.length;
+				current.block.length += current.block.length;
 				freeList.remove(current.next);
 				current = freeList.getFirst();
 			}
