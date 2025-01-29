@@ -137,5 +137,18 @@ public class MemorySpace {
 	public void defrag() {
 		/// TODO: Implement defrag test
 		//// Write your code here
+		if (freeList.getSize() <= 1) {
+			return;
+		}
+		Node current = freeList.getFirst();
+		while (current.next != null) {
+			int numMemory = current.block.baseAddress + current.block.length;
+			if (current.next.block.baseAddress == numMemory) {
+				current.block.length += current.block.baseAddress + current.block.length;
+				freeList.remove(current.next);
+				current = freeList.getFirst();
+			}
+			current = current.next;
+		}
 	}
 }
