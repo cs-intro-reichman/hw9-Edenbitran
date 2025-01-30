@@ -141,18 +141,18 @@ public class MemorySpace {
 			return;
 		}
 		Node current = freeList.getFirst();
-		Node nextCurrent = freeList.getFirst().next;
+		Node nextCurrent = current.next;
 		while (current != null) {
+			nextCurrent = this.freeList.getFirst();
 			while (nextCurrent != null) {
-				int numMemory = current.block.baseAddress + current.block.length;
-				if (nextCurrent.block.baseAddress == numMemory) {
+				if (current.block.baseAddress + current.block.length == nextCurrent.block.baseAddress) {
 					current.block.length += nextCurrent.block.length;
 					freeList.remove(nextCurrent);
+					nextCurrent = current;
 				}
 				nextCurrent = nextCurrent.next;
 			}
 			current = current.next;
-
 		}
 	}
 }

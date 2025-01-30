@@ -39,10 +39,10 @@ public class LinkedListTest {
 		// 96) (699 , 68) (809 , 109) (950 , 9)
 
 		// // Frees some more memory and defrags (IGNORE THIS TESTING SECTION FOR NOW)
-		// m.free(addresses[1]);
-		// m.free(addresses[3]);
-		// m.defrag();
-		// System.out.println(m);
+		m.free(addresses[1]);
+		m.free(addresses[3]);
+		m.defrag();
+		System.out.println(m);
 		// //// expected output:
 		// //// (959 , 41) (0 , 269) (348 , 50) (407 , 1) (452 , 3) (534 , 68) (698 , 1)
 		// (767 , 42) (918 , 32)
